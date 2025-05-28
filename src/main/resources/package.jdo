@@ -34,7 +34,7 @@
             <column name="COLUMN_NAME" length="767" jdbc-type="VARCHAR"/>
           </field>
           <field name="type" >
-            <column name="TYPE_NAME" length="32672" jdbc-type="VARCHAR" allows-null="false"/>
+            <column name="TYPE_NAME" jdbc-type="CLOB" allows-null="false"/>
           </field>
           <field name="comment" >
             <column name="COMMENT" length="4000" jdbc-type="VARCHAR" allows-null="true"/>
