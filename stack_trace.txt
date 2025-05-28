@@ -1,0 +1,259 @@
+DataNucleus TestCase : BugReprSampleCode
+===================================
+15:04:17.507 [com.github.jdo.Main.main()] ERROR DataNucleus.Datastore.Persist - Exception updating embedded element in collection
+java.sql.SQLException: ORA-22848: cannot use CLOB type as comparison key
+
+https://docs.oracle.com/error-help/db/ora-22848/
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:712) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:612) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1364) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:969) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:237) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:516) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:275) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1485) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:2009) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1622) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3961) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OraclePreparedStatement.doExecuteLargeUpdate(OraclePreparedStatement.java:4327) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:4304) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:4279) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1004) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.SQLController.doExecuteStatementUpdate(SQLController.java:463) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.SQLController.executeStatementUpdate(SQLController.java:396) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:404) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.types.wrappers.backed.List.updateEmbeddedElement(List.java:320) ~[datanucleus-core-6.0.7.jar:?]
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4263) ~[datanucleus-core-6.0.7.jar:?]
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4224) ~[datanucleus-core-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.mapping.java.EmbeddedMapping.getObject(EmbeddedMapping.java:645) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.scostore.ListStoreIterator.<init>(ListStoreIterator.java:90) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.scostore.JoinListStore.listIterator(JoinListStore.java:776) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.listIterator(AbstractListStore.java:82) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.iterator(AbstractListStore.java:76) ~[datanucleus-rdbms-6.0.7.jar:?]
+	at org.datanucleus.store.types.wrappers.backed.List.loadFromStore(List.java:281) ~[datanucleus-core-6.0.7.jar:?]
+	at org.datanucleus.store.types.wrappers.backed.List.iterator(List.java:500) ~[datanucleus-core-6.0.7.jar:?]
+	at java.util.AbstractCollection.toString(AbstractCollection.java:449) ~[?:?]
+	at java.lang.String.valueOf(String.java:4220) ~[?:?]
+	at org.fusesource.jansi.FilterPrintStream.println(FilterPrintStream.java:238) ~[?:?]
+	at com.github.jdo.Main.lambda$main$0(Main.java:32) ~[classes/:?]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:?]
+	at com.github.jdo.Main.main(Main.java:32) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:290) [exec-maven-plugin-1.1.jar:?]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+Caused by: oracle.jdbc.OracleDatabaseException: ORA-22848: cannot use CLOB type as comparison key
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:720) ~[ojdbc17-23.6.0.24.10.jar:23.6.0.24.10]
+	... 41 more
+Add request failed : UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?
+org.datanucleus.exceptions.NucleusDataStoreException: Add request failed : UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:421)
+	at org.datanucleus.store.types.wrappers.backed.List.updateEmbeddedElement(List.java:320)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4263)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4224)
+	at org.datanucleus.store.rdbms.mapping.java.EmbeddedMapping.getObject(EmbeddedMapping.java:645)
+	at org.datanucleus.store.rdbms.scostore.ListStoreIterator.<init>(ListStoreIterator.java:90)
+	at org.datanucleus.store.rdbms.scostore.JoinListStore.listIterator(JoinListStore.java:776)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.listIterator(AbstractListStore.java:82)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.iterator(AbstractListStore.java:76)
+	at org.datanucleus.store.types.wrappers.backed.List.loadFromStore(List.java:281)
+	at org.datanucleus.store.types.wrappers.backed.List.iterator(List.java:500)
+	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:449)
+	at java.base/java.lang.String.valueOf(String.java:4220)
+	at org.fusesource.jansi.FilterPrintStream.println(FilterPrintStream.java:238)
+	at com.github.jdo.Main.lambda$main$0(Main.java:32)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.github.jdo.Main.main(Main.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:290)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLException: ORA-22848: cannot use CLOB type as comparison key
+
+https://docs.oracle.com/error-help/db/ora-22848/
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:712)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:612)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1364)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:969)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:237)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:516)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:275)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1485)
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:2009)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1622)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3961)
+	at oracle.jdbc.driver.OraclePreparedStatement.doExecuteLargeUpdate(OraclePreparedStatement.java:4327)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:4304)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:4279)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1004)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.SQLController.doExecuteStatementUpdate(SQLController.java:463)
+	at org.datanucleus.store.rdbms.SQLController.executeStatementUpdate(SQLController.java:396)
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:404)
+	... 22 more
+Caused by: Error : 22848, Position : 98, SQL = UPDATE COLUMNS_V2 SET "COMMENT" = :1 WHERE CD_ID=:2 AND "COMMENT" = :3 AND "COLUMN_NAME" = :4 AND TYPE_NAME = :5 , Original SQL = UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?, Error Message = ORA-22848: cannot use CLOB type as comparison key
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:720)
+	... 41 more
+Nested Throwables StackTrace:
+java.sql.SQLException: ORA-22848: cannot use CLOB type as comparison key
+
+https://docs.oracle.com/error-help/db/ora-22848/
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:712)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:612)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1364)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:969)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:237)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:516)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:275)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1485)
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:2009)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1622)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3961)
+	at oracle.jdbc.driver.OraclePreparedStatement.doExecuteLargeUpdate(OraclePreparedStatement.java:4327)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:4304)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:4279)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1004)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.SQLController.doExecuteStatementUpdate(SQLController.java:463)
+	at org.datanucleus.store.rdbms.SQLController.executeStatementUpdate(SQLController.java:396)
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:404)
+	at org.datanucleus.store.types.wrappers.backed.List.updateEmbeddedElement(List.java:320)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4263)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4224)
+	at org.datanucleus.store.rdbms.mapping.java.EmbeddedMapping.getObject(EmbeddedMapping.java:645)
+	at org.datanucleus.store.rdbms.scostore.ListStoreIterator.<init>(ListStoreIterator.java:90)
+	at org.datanucleus.store.rdbms.scostore.JoinListStore.listIterator(JoinListStore.java:776)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.listIterator(AbstractListStore.java:82)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.iterator(AbstractListStore.java:76)
+	at org.datanucleus.store.types.wrappers.backed.List.loadFromStore(List.java:281)
+	at org.datanucleus.store.types.wrappers.backed.List.iterator(List.java:500)
+	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:449)
+	at java.base/java.lang.String.valueOf(String.java:4220)
+	at org.fusesource.jansi.FilterPrintStream.println(FilterPrintStream.java:238)
+	at com.github.jdo.Main.lambda$main$0(Main.java:32)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.github.jdo.Main.main(Main.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:290)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: Error : 22848, Position : 98, SQL = UPDATE COLUMNS_V2 SET "COMMENT" = :1 WHERE CD_ID=:2 AND "COMMENT" = :3 AND "COLUMN_NAME" = :4 AND TYPE_NAME = :5 , Original SQL = UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?, Error Message = ORA-22848: cannot use CLOB type as comparison key
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:720)
+	... 41 more
+saihemanth@21129 DataNucleus502 % mvn exec:java > ~/stack_trace.txt
+Add request failed : UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?
+org.datanucleus.exceptions.NucleusDataStoreException: Add request failed : UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:421)
+	at org.datanucleus.store.types.wrappers.backed.List.updateEmbeddedElement(List.java:320)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4263)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4224)
+	at org.datanucleus.store.rdbms.mapping.java.EmbeddedMapping.getObject(EmbeddedMapping.java:645)
+	at org.datanucleus.store.rdbms.scostore.ListStoreIterator.<init>(ListStoreIterator.java:90)
+	at org.datanucleus.store.rdbms.scostore.JoinListStore.listIterator(JoinListStore.java:776)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.listIterator(AbstractListStore.java:82)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.iterator(AbstractListStore.java:76)
+	at org.datanucleus.store.types.wrappers.backed.List.loadFromStore(List.java:281)
+	at org.datanucleus.store.types.wrappers.backed.List.iterator(List.java:500)
+	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:449)
+	at java.base/java.lang.String.valueOf(String.java:4220)
+	at org.fusesource.jansi.FilterPrintStream.println(FilterPrintStream.java:238)
+	at com.github.jdo.Main.lambda$main$0(Main.java:32)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.github.jdo.Main.main(Main.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:290)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLException: ORA-22848: cannot use CLOB type as comparison key
+
+https://docs.oracle.com/error-help/db/ora-22848/
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:712)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:612)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1364)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:969)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:237)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:516)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:275)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1485)
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:2009)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1622)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3961)
+	at oracle.jdbc.driver.OraclePreparedStatement.doExecuteLargeUpdate(OraclePreparedStatement.java:4327)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:4304)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:4279)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1004)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.SQLController.doExecuteStatementUpdate(SQLController.java:463)
+	at org.datanucleus.store.rdbms.SQLController.executeStatementUpdate(SQLController.java:396)
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:404)
+	... 22 more
+Caused by: Error : 22848, Position : 98, SQL = UPDATE COLUMNS_V2 SET "COMMENT" = :1 WHERE CD_ID=:2 AND "COMMENT" = :3 AND "COLUMN_NAME" = :4 AND TYPE_NAME = :5 , Original SQL = UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?, Error Message = ORA-22848: cannot use CLOB type as comparison key
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:720)
+	... 41 more
+Nested Throwables StackTrace:
+java.sql.SQLException: ORA-22848: cannot use CLOB type as comparison key
+
+https://docs.oracle.com/error-help/db/ora-22848/
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:712)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:612)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1364)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:969)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:237)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:516)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:275)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1485)
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:2009)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1622)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3961)
+	at oracle.jdbc.driver.OraclePreparedStatement.doExecuteLargeUpdate(OraclePreparedStatement.java:4327)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:4304)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:4279)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1004)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.datasource.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:136)
+	at org.datanucleus.store.rdbms.SQLController.doExecuteStatementUpdate(SQLController.java:463)
+	at org.datanucleus.store.rdbms.SQLController.executeStatementUpdate(SQLController.java:396)
+	at org.datanucleus.store.rdbms.scostore.AbstractCollectionStore.updateEmbeddedElement(AbstractCollectionStore.java:404)
+	at org.datanucleus.store.types.wrappers.backed.List.updateEmbeddedElement(List.java:320)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4263)
+	at org.datanucleus.state.StateManagerImpl.replaceField(StateManagerImpl.java:4224)
+	at org.datanucleus.store.rdbms.mapping.java.EmbeddedMapping.getObject(EmbeddedMapping.java:645)
+	at org.datanucleus.store.rdbms.scostore.ListStoreIterator.<init>(ListStoreIterator.java:90)
+	at org.datanucleus.store.rdbms.scostore.JoinListStore.listIterator(JoinListStore.java:776)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.listIterator(AbstractListStore.java:82)
+	at org.datanucleus.store.rdbms.scostore.AbstractListStore.iterator(AbstractListStore.java:76)
+	at org.datanucleus.store.types.wrappers.backed.List.loadFromStore(List.java:281)
+	at org.datanucleus.store.types.wrappers.backed.List.iterator(List.java:500)
+	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:449)
+	at java.base/java.lang.String.valueOf(String.java:4220)
+	at org.fusesource.jansi.FilterPrintStream.println(FilterPrintStream.java:238)
+	at com.github.jdo.Main.lambda$main$0(Main.java:32)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.github.jdo.Main.main(Main.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:290)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: Error : 22848, Position : 98, SQL = UPDATE COLUMNS_V2 SET "COMMENT" = :1 WHERE CD_ID=:2 AND "COMMENT" = :3 AND "COLUMN_NAME" = :4 AND TYPE_NAME = :5 , Original SQL = UPDATE COLUMNS_V2 SET "COMMENT" = ? WHERE CD_ID=? AND "COMMENT" = ? AND "COLUMN_NAME" = ? AND TYPE_NAME = ?, Error Message = ORA-22848: cannot use CLOB type as comparison key
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:720)
+	... 41 more

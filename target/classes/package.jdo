@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jdo xmlns="http://xmlns.jcp.org/xml/ns/jdo/jdo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/jdo/jdo http://xmlns.jcp.org/xml/ns/jdo/jdo_3_1.xsd" version="3.1">
+    <package name="com.github.jdo">
+        <class name="MColumnDescriptor" identity-type="datastore" table="CDS" detachable="true">
+          <datastore-identity strategy="increment">
+            <column name="CD_ID" primary-key="true" value-strategy="increment"/>
+          </datastore-identity>
+          <field name="cols" persistence-modifier="persistent" table="COLUMNS_V2">
+            <collection element-type="MFieldSchema"/>
+            <join>
+              <primary-key name="COLUMNS_V2_PK">
+                <column name="CD_ID"/>
+                <column name="COLUMN_NAME"/>
+              </primary-key>
+              <column name="CD_ID"/>
+            </join>
+            <element>
+              <embedded>
+                <field name="name">
+                  <column name="COLUMN_NAME" length="767" jdbc-type="VARCHAR" allows-null="false"/>
+                </field>
+                <field name="type">
+                  <column name="TYPE_NAME" length="3267" jdbc-type="VARCHAR" allows-null="false"/>
+                </field>
+                <field name="comment">
+                  <column name="COMMENT" length="256" jdbc-type="VARCHAR" allows-null="true"/>
+                </field>
+              </embedded>
+            </element>
+          </field>
+        </class>
+        <class name="MFieldSchema" embedded-only="true" table="COLUMNS_V2" detachable="true">
+          <field name="name">
+            <column name="COLUMN_NAME" length="767" jdbc-type="VARCHAR"/>
+          </field>
+          <field name="type" >
+            <column name="TYPE_NAME" length="32672" jdbc-type="VARCHAR" allows-null="false"/>
+          </field>
+          <field name="comment" >
+            <column name="COMMENT" length="4000" jdbc-type="VARCHAR" allows-null="true"/>
+          </field>
+        </class>
+    </package>
+</jdo>
